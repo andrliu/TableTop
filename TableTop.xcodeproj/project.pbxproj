@@ -14,6 +14,7 @@
 		4932A00F1B0DAAA900CA007E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4932A00E1B0DAAA900CA007E /* Images.xcassets */; };
 		4932A0121B0DAAA900CA007E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4932A0101B0DAAA900CA007E /* LaunchScreen.xib */; };
 		4932A01E1B0DAAA900CA007E /* TableTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A01D1B0DAAA900CA007E /* TableTopTests.swift */; };
+		4932A0281B0DB29E00CA007E /* MultipeerConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		4932A0171B0DAAA900CA007E /* TableTopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableTopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4932A01C1B0DAAA900CA007E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4932A01D1B0DAAA900CA007E /* TableTopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTopTests.swift; sourceTree = "<group>"; };
+		4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				4932A0041B0DAAA900CA007E /* AppDelegate.swift */,
 				4932A0091B0DAAA900CA007E /* ViewController.swift */,
+				4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */,
 				4932A00B1B0DAAA900CA007E /* Main.storyboard */,
 				4932A00E1B0DAAA900CA007E /* Images.xcassets */,
 				4932A0101B0DAAA900CA007E /* LaunchScreen.xib */,
@@ -217,6 +220,7 @@
 			files = (
 				4932A00A1B0DAAA900CA007E /* ViewController.swift in Sources */,
 				4932A0081B0DAAA900CA007E /* TableTop.xcdatamodeld in Sources */,
+				4932A0281B0DB29E00CA007E /* MultipeerConnectivityManager.swift in Sources */,
 				4932A0051B0DAAA900CA007E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
