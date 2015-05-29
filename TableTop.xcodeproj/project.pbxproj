@@ -9,12 +9,13 @@
 /* Begin PBXBuildFile section */
 		4932A0051B0DAAA900CA007E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0041B0DAAA900CA007E /* AppDelegate.swift */; };
 		4932A0081B0DAAA900CA007E /* TableTop.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0061B0DAAA900CA007E /* TableTop.xcdatamodeld */; };
-		4932A00A1B0DAAA900CA007E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0091B0DAAA900CA007E /* ViewController.swift */; };
 		4932A00D1B0DAAA900CA007E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4932A00B1B0DAAA900CA007E /* Main.storyboard */; };
 		4932A00F1B0DAAA900CA007E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4932A00E1B0DAAA900CA007E /* Images.xcassets */; };
 		4932A0121B0DAAA900CA007E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4932A0101B0DAAA900CA007E /* LaunchScreen.xib */; };
 		4932A01E1B0DAAA900CA007E /* TableTopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A01D1B0DAAA900CA007E /* TableTopTests.swift */; };
 		4932A0281B0DB29E00CA007E /* MultipeerConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */; };
+		4932A02A1B13C7D400CA007E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932A0291B13C7D400CA007E /* RootViewController.swift */; };
+		49D363411B183A24009674BA /* RoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D363401B183A24009674BA /* RoomViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +33,6 @@
 		4932A0031B0DAAA900CA007E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4932A0041B0DAAA900CA007E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4932A0071B0DAAA900CA007E /* TableTop.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TableTop.xcdatamodel; sourceTree = "<group>"; };
-		4932A0091B0DAAA900CA007E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4932A00C1B0DAAA900CA007E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4932A00E1B0DAAA900CA007E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4932A0111B0DAAA900CA007E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -40,6 +40,8 @@
 		4932A01C1B0DAAA900CA007E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4932A01D1B0DAAA900CA007E /* TableTopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTopTests.swift; sourceTree = "<group>"; };
 		4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerConnectivityManager.swift; sourceTree = "<group>"; };
+		4932A0291B13C7D400CA007E /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		49D363401B183A24009674BA /* RoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				4932A0041B0DAAA900CA007E /* AppDelegate.swift */,
-				4932A0091B0DAAA900CA007E /* ViewController.swift */,
+				4932A0291B13C7D400CA007E /* RootViewController.swift */,
+				49D363401B183A24009674BA /* RoomViewController.swift */,
 				4932A0271B0DB29E00CA007E /* MultipeerConnectivityManager.swift */,
 				4932A00B1B0DAAA900CA007E /* Main.storyboard */,
 				4932A00E1B0DAAA900CA007E /* Images.xcassets */,
@@ -167,6 +170,7 @@
 				TargetAttributes = {
 					49329FFE1B0DAAA900CA007E = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = DCD4R4P68C;
 					};
 					4932A0161B0DAAA900CA007E = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -218,9 +222,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4932A00A1B0DAAA900CA007E /* ViewController.swift in Sources */,
+				4932A02A1B13C7D400CA007E /* RootViewController.swift in Sources */,
 				4932A0081B0DAAA900CA007E /* TableTop.xcdatamodeld in Sources */,
 				4932A0281B0DB29E00CA007E /* MultipeerConnectivityManager.swift in Sources */,
+				49D363411B183A24009674BA /* RoomViewController.swift in Sources */,
 				4932A0051B0DAAA900CA007E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,9 +353,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TableTop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -358,9 +367,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TableTop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -417,6 +430,7 @@
 				4932A0231B0DAAA900CA007E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4932A0241B0DAAA900CA007E /* Build configuration list for PBXNativeTarget "TableTopTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +439,7 @@
 				4932A0261B0DAAA900CA007E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
