@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Andrew Liu. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import MultipeerConnectivity
 
 protocol MCManagerDelegate {
@@ -64,6 +64,7 @@ class MultipeerConnectivityManager: NSObject, MCSessionDelegate, MCNearbyService
         }
         return true
     }
+    
 }
 
 extension MultipeerConnectivityManager: MCSessionDelegate {
@@ -78,7 +79,7 @@ extension MultipeerConnectivityManager: MCSessionDelegate {
                     break
                 }
             }
-            connectedPeers.append(peerID)
+            self.connectedPeers.append(peerID)
             delegate?.connectedWithPeer()
             
         case MCSessionState.Connecting:

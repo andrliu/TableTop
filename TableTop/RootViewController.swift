@@ -14,6 +14,9 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var connectingIndicator: UIActivityIndicatorView!
     
+    var players = [Player]()
+    var currentPlayer: Player!
+    
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
@@ -37,9 +40,35 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        let gameVC: GameViewController = segue.destinationViewController as! GameViewController
+        gameVC.players = self.players
+        gameVC.currentPlayer = self.currentPlayer
+    }
+    
     @IBAction func startGameOnButtonPressed(sender: UIBarButtonItem) {
+        // Set up players order
+        var oderDictionary = [String: String]()
+        var tempPlayers: [MCPeerID] = self.appDelegate.MCManager.connectedPeers
+        tempPlayers.append(self.appDelegate.MCManager.peer)
+        var i = 0
+        while tempPlayers.count > 0 {
+            let index = Int(arc4random_uniform(UInt32(tempPlayers.count)))
+            let player = Player(peer: tempPlayers[index], order: i)
+            if (tempPlayers[index].displayName == self.appDelegate.MCManager.peer.displayName) {
+                self.currentPlayer = player
+            }
+            self.players.append(player)
+            tempPlayers.removeAtIndex(index)
+            oderDictionary["\(i)"] = player.peer.displayName
+            i++
+        }
+        self.appDelegate.MCManager.sendData(dictionaryWithData: oderDictionary)
+        
+        // init a new game
         let initDictionary: [String: String] = ["action": "_start_game_"]
         self.appDelegate.MCManager.sendData(dictionaryWithData: initDictionary)
+        
         self.performSegueWithIdentifier("gameSegue", sender: self)
     }
     
@@ -54,11 +83,29 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Convert the data (NSData) into a Dictionary object.
         let dataDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! Dictionary<String, String>
         
+        if dataDictionary.count > 1 {
+        
+            for index in 0..<dataDictionary.count {
+                let name = dataDictionary["\(index)"]
+                if (name == self.appDelegate.MCManager.peer.displayName) {
+                    self.currentPlayer = Player(peer: self.appDelegate.MCManager.peer, order: index)
+                    self.players.append(self.currentPlayer)
+                }
+                else {
+                    for i in 0..<self.appDelegate.MCManager.connectedPeers.count {
+                        if (name == self.appDelegate.MCManager.connectedPeers[i].displayName) {
+                            let player = Player(peer: self.appDelegate.MCManager.connectedPeers[i], order: index)
+                            self.players.append(player)
+                        }
+                    }
+                }
+            }
+        }
+        
         // Check if there's an entry with the "message" key.
         if let message = dataDictionary["action"] {
             // Make sure that the message is other than "_end_chat_".
             if message == "_start_game_"{
-
                 let alert = UIAlertController(title: "", message: "\(fromPeer.displayName) wants to start a new game.", preferredStyle: UIAlertControllerStyle.Alert)
                 let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertActionStyle.Default) { (alertAction) -> Void in
                     self.performSegueWithIdentifier("gameSegue", sender: self)
@@ -66,7 +113,6 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
                 alert.addAction(acceptAction)
                 NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
                     self.presentViewController(alert, animated: true, completion: nil)
-
                 }
             }
         }
