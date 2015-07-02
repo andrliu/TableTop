@@ -102,9 +102,8 @@ class RootViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
         
-        // Check if there's an entry with the "message" key.
+        // Check if there's an entry with the "action" key.
         if let message = dataDictionary["action"] {
-            // Make sure that the message is other than "_end_chat_".
             if message == "_start_game_"{
                 let alert = UIAlertController(title: "", message: "\(fromPeer.displayName) wants to start a new game.", preferredStyle: UIAlertControllerStyle.Alert)
                 let acceptAction: UIAlertAction = UIAlertAction(title: "Accept", style: UIAlertActionStyle.Default) { (alertAction) -> Void in

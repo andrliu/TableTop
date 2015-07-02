@@ -41,9 +41,22 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func rollOnButtonPressed(sender: UIButton) {
-        
-        let initDictionary: [String: String] = ["action": "_start_game_"]
-        self.appDelegate.MCManager.sendData(dictionaryWithData: initDictionary)
+        let player = "\(self.currentPlayer.order)"
+        let diceNumber = "\(arc4random_uniform(6) + 1)"
+        self.currentPlayer.score = self.currentPlayer.score + diceNumber.toInt()!
+        self.players[self.currentPlayer.order].score = self.currentPlayer.score
+        let nextPlayer : String
+        if self.currentPlayer.order + 1 == self.players.count {
+            nextPlayer = "0"
+        } else {
+            nextPlayer = "\(self.currentPlayer.order + 1)"
+        }
+        let resultDictionary: [String: String] = ["lastPlayer": player,
+                                                  "scroe": diceNumber,
+                                                  "nextPlayer": nextPlayer]
+        self.appDelegate.MCManager.sendData(dictionaryWithData: resultDictionary)
+        self.button.enabled = false
+        self.tableView.reloadData()
     }
     
     func handleMPCReceivedDataWithNotification(notification: NSNotification) {
@@ -57,12 +70,22 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         // Convert the data (NSData) into a Dictionary object.
         let dataDictionary = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as! Dictionary<String, String>
         
-        // Check if there's an entry with the "message" key.
-        if let message = dataDictionary["action"] {
-            // Make sure that the message is other than "_end_chat_".
-            if message == "_start_game_"{
-                
-                
+        // Check if there's an entry with the "lastPlayer" key.
+        if let player = dataDictionary["lastPlayer"] {
+            if let score = dataDictionary["scroe"] {
+                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                    self.players[player.toInt()!].score = self.players[player.toInt()!].score + score.toInt()!
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        
+        // Check if there's an entry with the "nextPlayer" key.
+        if let nextPlayer = dataDictionary["nextPlayer"] {
+            if nextPlayer.toInt()! == self.currentPlayer.order {
+                NSOperationQueue.mainQueue().addOperationWithBlock { () -> Void in
+                 self.button.enabled = true
+                }
             }
         }
     }
